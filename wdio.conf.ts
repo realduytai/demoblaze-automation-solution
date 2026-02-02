@@ -1,8 +1,10 @@
 import dotenv from "dotenv"
+
 dotenv.config();
 import allure from 'allure-commandline';
-import type { Options } from "@wdio/types"
+import type {Options} from "@wdio/types"
 import {join} from "path";
+
 export const config: Options.Testrunner = {
     runner: "local",
     tsConfigPath: "./tsconfig.json",
@@ -13,21 +15,21 @@ export const config: Options.Testrunner = {
     ],
     capabilities: process.env.BROWSER === 'chrome' ? [
         {
-        browserName: 'chrome',
-        acceptInsecureCerts: true,
-        'wdio:enforceWebDriverClassic': true,
-        'goog:chromeOptions': {
-            prefs: {
-                'download.prompt_for_download': false,
-                'profile.managed_default_content_settings.popups': 2,
-                'profile.default_content_setting_values.automatic_downloads': 1
+            browserName: 'chrome',
+            acceptInsecureCerts: true,
+            'wdio:enforceWebDriverClassic': true,
+            'goog:chromeOptions': {
+                prefs: {
+                    'download.prompt_for_download': false,
+                    'profile.managed_default_content_settings.popups': 2,
+                    'profile.default_content_setting_values.automatic_downloads': 1
+                }
+                // args: ['--headless=new', '--window-size=1920,1200']
             }
-            // args: ['--headless=new', '--window-size=1920,1200']
-        }
-    }] : [            {
-            browserName: 'safari',
-           acceptInsecureCerts: true,
-         }],
+        }] : [{
+        browserName: 'safari',
+        acceptInsecureCerts: true,
+    }],
     maxInstances: parseInt(process.env.INSTANCES),
     logLevel: 'debug',
     bail: 0,
@@ -64,7 +66,7 @@ export const config: Options.Testrunner = {
     },
     beforeStep: function () {
     },
-    afterStep: async function ({ passed }) {
+    afterStep: async function ({passed}) {
         if (!passed) {
             await browser.takeScreenshot()
         }
@@ -72,13 +74,13 @@ export const config: Options.Testrunner = {
     afterScenario: function () {
     },
     afterFeature: function () {
-         },
+    },
 
     afterTest: async function () {
         await browser.reloadSession();
     },
 
-    onComplete: async function() {
+    onComplete: async function () {
         const reportError = new Error('Unable to generate Allure reports')
         const generation = allure(['generate', 'allure-results', '--clean', '--single-file'])
         await new Promise<void>((resolve, reject) => {

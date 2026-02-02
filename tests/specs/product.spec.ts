@@ -38,8 +38,8 @@ describe('Ordering', () => {
     });
 
     it('CAR-059 - Verify user is redirected to Home after confirmed purchasing', async () => {
-        const product1 = {name: 'Sony xperia z5', category: ProductData.productCategories.phone, quantity: 2}
-        const product2 = {name: 'MacBook Pro', category: ProductData.productCategories.laptop, quantity: 1}
+        const product1 = {name: 'ASUS Full HD', category: ProductData.productCategories.monitor, quantity: 1}
+        const product2 = {name: 'Apple monitor 24', category: ProductData.productCategories.monitor, quantity: 1}
 
         await HomePage.open()
         const orderingProducts = [product1, product2]

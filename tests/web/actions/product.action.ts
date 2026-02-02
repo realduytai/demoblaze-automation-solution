@@ -50,6 +50,7 @@ class ProductActions {
             await this.addProductToCart(product, product.quantity)
             await SharedPage.goToHome()
         }
+        // await browser.pause(10000)
         await SharedPage.goToCart()
         await CartPage.clickOnButtonPlaceOrder()
         await CartPage.inputOrderForm(purchaseInfo)

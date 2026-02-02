@@ -31,7 +31,7 @@ export default class BasePage {
 
     async waitForPageLoaded() {
         await browser.waitUntil(
-            async () => ((await browser.execute(() => document.readyState)) === 'complete') && (await browser.executeScript("return window.$.active", [])) == 0, {
+            async () => ((await browser.execute(() => document.readyState)) === 'complete') && (await browser.executeScript("return jQuery.active", [])) == 0, {
                 timeout: 15000,
                 timeoutMsg: 'Website not loaded',
                 interval: 2000

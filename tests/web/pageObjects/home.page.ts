@@ -2,6 +2,7 @@ import BasePage from "./base.page.ts"
 import BaseControl from "./../controls/base.control.ts"
 import Link from "./../controls/link.control.ts"
 import Logger from "../../helpers/logger.helper"
+import {trimSpaces, trimBreakLines} from "../../helpers/string.helper";
 
 const SELECTORS = {
     CATEGORIES: function () {
@@ -53,10 +54,10 @@ class HomePage extends BasePage {
 
         for (const name of names) {
             summaries.push({
-                name: name,
+                name: trimBreakLines(name),
                 image: await new BaseControl().getAttribute(SELECTORS.PRODUCT_CARD(name).IMAGE(), 'src'),
                 price: await new BaseControl().getText(SELECTORS.PRODUCT_CARD(name).PRICE()),
-                description: await new BaseControl().getText(SELECTORS.PRODUCT_CARD(name).DESCRIPTION()),
+                description: trimSpaces((await new BaseControl().getText(SELECTORS.PRODUCT_CARD(name).DESCRIPTION())).replace(/\n/g, ' ')),
             })
         }
 
