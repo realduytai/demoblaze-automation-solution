@@ -53,4 +53,4 @@ npm run test // default run on "chrome" with "1" instance
 or
 ```
 BROWSER=["chrome"|"safari"] INSTANCES=[1|2|3|...] npm run test // run on given browser type with number of given instances 
-```# demoblaze-automation-solution
+```
