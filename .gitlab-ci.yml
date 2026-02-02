@@ -1,0 +1,23 @@
+  image: node:20.20
+
+  cache:
+    paths:
+      - ./node_modules/
+  full-run:
+    before_script:
+      - apt-get update
+      - apt-get install -y curl jq
+      - apt-get install -y awscli
+      - export AWS_REGION=$AWS_REGION
+      - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    script:
+      - npm install
+      - npm run test >/dev/null
+    artifacts:
+      when: always
+      paths:
+        - ./allure-report/index.html
+      expire_in: 1 week
+    allow_failure: true
+    when: manual

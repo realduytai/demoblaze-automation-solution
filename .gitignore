@@ -1,0 +1,12 @@
+# Project specific
+allure-results
+.idea
+
+# Dependency directories
+node_modules/
+
+# runner output
+tests/data/output/
+
+#files
+package-lock.json
