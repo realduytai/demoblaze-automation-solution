@@ -8,9 +8,9 @@
 This repo is a UI/API automation framework using WebdriverIO (wdio.conf.ts), TypeScript (tsconfig.json), and probably Allure for reporting and .gitlab-ci.yml for CI.
 
 - tests/web/
-actions/ : Contains High-level user behavior actions combining page objects and controls
-controls/ : Contains reusable low-level UI components wrapping
-pageObjects/ : Page Object Model for each page, defining elements and simple page-level operations (no including assertions)
+  - actions/ : Contains High-level user behavior actions combining page objects and controls  
+  - controls/ : Contains reusable low-level UI components wrapping
+  - pageObjects/ : Page Object Model for each page, defining elements and simple page-level operations (no including assertions)
 
 - tests/api/
 requests/: Contains specific API methods for requests to product endpoints. Purpose is to creat/modify/delete data for testing
